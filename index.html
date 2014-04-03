@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5 boilerplate – all you really need…</title>
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+	html, body {
+		/*height: 100%;*/
+		padding:0;
+		margin:0;
+	}
+	.wrapper {
+		width: 100%;
+	}
+	.black {
+		background-color: #000;
+	}
+	.gray {
+		background-color: #f7f7f7;
+	}
+	.container {
+		width: 66.666666%;
+		margin:0 auto;
+	}
+	.videoWrapper {
+		position: relative;
+		padding-bottom: 56.25%; /* 16:9 */
+		height: 0;
+		z-index:2;
+		cursor: pointer;
+	}
+	.videoWrapper iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	figure {
+	  position: relative;
+	  display:block;
+	  margin: 0;
+	}
+	figure img,
+	figure object,
+	figure embed,
+	figure video {
+	  width: 100%;
+	  display: block;
+	}
+	img {
+	  border: 0;
+	  -ms-interpolation-mode: bicubic;
+	}
+	.hide {
+		display:none;
+	}
+    </style>
+</head>
+
+<body id="home">
+	<div class="wrapper black">
+		<div class="container">
+			<div class="row">
+				<div id="vPlayer" class="videoWrapper">
+				<figure id="video-image" onclick="return imgClick(); ">
+					<img src="http://placekitten.com/960/540" alt="">
+				</figure>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrapper gray">
+		<div class="container">
+			<div class="row">		
+				<figure>
+					<img src="http://placekitten.com/960/500" alt="">
+				</figure>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function imgClick() { 
+		var id = "video-image";
+		var myClassName= "hide"; //must keep a space before class name
+		var d;
+		d=document.getElementById(id);
+		d.className=d.className.replace(myClassName,""); // first remove the class name if that already exists
+		d.className = d.className + myClassName; // adding new class name
+
+        var ifrm = document.createElement("IFRAME"); 
+           ifrm.setAttribute("src", "http://player.vimeo.com/video/88829079?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1;"); 
+           ifrm.setAttribute("frameborder", "0"); 
+           // add rest of your values
+           ifrm.frameborder = 0;
+           document.getElementById("vPlayer").appendChild(ifrm); 
+        return false;        
+		}
+		function fade(element) {
+		    var op = 1;  // initial opacity
+		    var timer = setInterval(function () {
+		        if (op <= 0.1){
+		            clearInterval(timer);
+		            element.style.display = 'none';
+		        }
+		        element.style.opacity = op;
+		        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+		        op -= op * 0.1;
+		    }, 50);
+		}
+		
+	</script>
+</body>
+</html>
